@@ -1,0 +1,13 @@
+<h1>Doctor Dashboard</h1> 
+<% if @appointments.present? %>
+	<% @appointments.each do |appointment| %> 
+		<p><%= appointment.patient.first_name %> <%= appointment.patient.last_name %> - <%= appointment.patient.email %></p>
+		<p>Status: <%= appointment.status %></p> 
+		<% if appointment.status.nil? %> 
+			<%= link_to 'Approve', approve_appointment_doctor_appointment_path(appointment_id: appointment.id), method: :post %> 
+			<%= link_to 'Decline', decline_appointment_doctor_appointment_path(appointment_id: appointment.id), method: :post %> 
+		<% end %> 
+	<% end %>
+<% else %>
+	<p><%= flash.now[:notice] %></p>
+<% end %>

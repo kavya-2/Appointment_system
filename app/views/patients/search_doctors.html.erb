@@ -1,0 +1,19 @@
+<h1>Search Doctors - <%= params[:specialization] %></h1>
+
+<% @doctors.each do |doctor| %>
+	<p><%= doctor.first_name %> <%= doctor.last_name %> - <%= doctor.email %></p>
+
+	<% appointment = @patient.appointments.find_by(doctor_id: doctor.id) %>
+	<% if appointment %>
+		<p>Status: <%= appointment.status %></p>
+		<% if appointment.status == 'approved' %>
+			<p>Your appointment has been approved.</p> 
+		<% elsif appointment.status == 'declined' %> 
+			<p>Your appointment has been declined.</p> 
+		<% else %> 
+			<p>Your appointment is pending approval.</p>
+		<% end %> 
+	<% else %> 
+		<%= link_to 'Book Appointment', appointments_path(doctor_id: doctor.id), method: :post %>
+	<% end %> 
+<% end %>

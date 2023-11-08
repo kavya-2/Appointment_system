@@ -1,0 +1,80 @@
+<h1>Doctor Registration</h1>
+
+<% if flash[:error].present? %> 
+	<div class="alert alert-danger"> 
+		<%= flash[:error] %> 
+	</div> 
+<% end %> 
+
+<%= form_with(model: @doctor, url: doctors_path) do |form| %> 
+	<% if @doctor.errors.any? %> 
+		<div class="alert alert-danger"> 
+			<p><strong><%= pluralize(@doctor.errors.count, "error") %> prohibited this doctor from being saved:</strong></p> 
+			<ul>
+				<% @doctor.errors.full_messages.each do |message| %> 
+					<li><%= message %></li> 
+				<% end %>
+			</ul> 
+		</div> 
+	<% end %>
+
+	<div class="field"> 
+		<%= form.label :first_name %> 
+		<%= form.text_field :first_name, placeholder: 'First Name' %> 
+	</div>
+
+	<div class="field"> 
+		<%= form.label :last_name %> 
+		<%= form.text_field :last_name, placeholder: 'Last Name' %>
+	</div>
+
+	<div class="field"> 
+		<%= form.label :username %> 
+		<%= form.text_field :username, placeholder: 'Username' %>
+	</div>
+
+	<div class="field"> 
+		<%= form.label :specialization %> 
+		<%= form.text_field :specialization, placeholder: 'Specialization' %> 
+	</div>
+
+	<div class="field"> 
+		<%= form.label :years_of_experience %> 
+		<%= form.number_field :years_of_experience, placeholder: 'Years of Experience' %>
+	</div>
+
+	<div class="field"> 
+		<%= form.label :location %> 
+		<%= form.text_field :location, placeholder: 'Location' %>
+	</div>
+
+	<div class="field"> 
+		<%= form.label :email %>
+		<%= form.text_field :email, placeholder: 'Email' %>
+	</div>
+
+	<div class="field">
+		<%= form.label :phone_number %> 
+		<%= form.text_field :phone_number, placeholder: 'Phone Number' %> 
+	</div>
+
+	<div class="field"> 
+		<%= form.label :gender %> 
+		<%= form.text_field :gender, placeholder: 'Gender' %> 
+	</div>
+
+	<div class="field"> 
+		<%= form.label :password %> 
+		<%= form.password_field :password, placeholder: 'Password' %> 
+	</div>
+
+	<div class="field">
+		<%= form.label :password_confirmation %> 
+		<%= form.password_field :password_confirmation, placeholder: 'Confirm Password' %> 
+	</div>
+
+	<div class="actions"> 
+		<%= form.submit 'Register' %> 
+	</div> 
+<% end %>
+

@@ -1,0 +1,23 @@
+<h1>Patient Dashboard</h1>
+
+<%= form_tag search_doctors_path, method: :get do %> 
+	<%= text_field_tag :specialization, params[:specialization], placeholder: 'Enter specialization' %> 
+	<%= submit_tag 'Search' %> 
+<% end %>
+
+<% if @appointments.any? %>
+	<% @appointments.each do |appointment| %>
+		<p> 
+			Doctor: <%= appointment.doctor.first_name %> - <%= appointment.doctor.email %>
+			<br> 
+			Status: <%= appointment.status %>
+		</p>
+	<% end %>
+<% else %>
+	<% if @doctors.any? %>
+		<p>No appointments found for this patient.</p>
+	<% else %>
+		<p>No doctors found.</p>
+	<% end %>
+<% end %>
+	

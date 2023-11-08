@@ -1,0 +1,15 @@
+<h1>Appointment Details</h1>
+
+<p>Patient: <%= @appointment.patient.name %></p>
+<p>Appointment Date: <%= @appointment.appointment_date %></p>
+<p>Duration: <%= @appointment.duration %> minutes</p> 
+
+<%= form_for @appointment, url: approve_appointment_doctor_appointment_path(@appointment.doctor, @appointment) do |f| %>
+	<%= f.hidden_field :status, value: "approved" %> 
+	<%= f.submit "Approve Appointment" %> 
+<% end %> 
+
+<%= form_for @appointment, url: decline_appointment_doctor_appointment_path(@appointment.doctor, @appointment) do |f| %> 
+	<%= f.hidden_field :status, value: "declined" %> 
+	<%= f.submit "Decline Appointment" %> 
+<% end %>

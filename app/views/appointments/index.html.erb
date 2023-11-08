@@ -1,0 +1,18 @@
+<h1>New Appointment</h1>
+
+<% if flash.now[:alert] %> 
+	<div class="alert alert-danger"> 
+		<%= flash.now[:alert] %> 
+	</div>
+<% end %>
+
+<%= form_for @appointment, url: appointments_path do |f| %> 
+	<%= f.hidden_field :doctor_id, value: params[:doctor_id] %> 
+	<%= f.hidden_field :patient_id, value: @patient.id %> 
+	<%= f.date_field :appointment_date %> 
+	<%= f.number_field :duration %>
+	
+	<div class="field"> 
+		<%= f.submit "Create Appointment" %> 
+	</div>
+<% end %>

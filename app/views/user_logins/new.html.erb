@@ -1,0 +1,14 @@
+<% if flash[:error].present? %> 
+	<div class="alert alert-danger"> 
+		<%= flash[:error] %> 
+	</div> 
+<% end %> 
+
+<h1>Login</h1> 
+<%= form_with(model: @user_login, url: user_logins_path) do |form| %> 
+	<%= form.text_field :username, placeholder: 'Username' %></br>
+	<%= form.password_field :password, placeholder: 'Password' %></br>
+	<%= form.submit 'Login' %> 
+<% end %> 
+<%= link_to 'Sign Up As Doctor', register_doctor_path %></br>
+<%= link_to 'Sign Up As Patient', register_patient_path %>
